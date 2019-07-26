@@ -10,6 +10,14 @@
             android:id="@+id/mainFragment"
             android:name="com.cer.imgurapp.MainFragment"
             android:label="fragment_overview"
-            tools:layout="@layout/fragment_main"/>
+            tools:layout="@layout/fragment_main">
+    </fragment>
+
+    <fragment
+            android:id="@+id/detailFragment"
+            android:name="com.cer.imgurapp.DetailFragment"
+            android:label="fragment_detail"
+            tools:layout="@layout/fragment_detail">
+    </fragment>
 
 </navigation>
