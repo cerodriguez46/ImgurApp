@@ -17,26 +17,21 @@ class MainViewModel : ViewModel() {
     val response: LiveData<String>
         get() = _response
 
-    /**
-     * Call getMarsRealEstateProperties() on init so we can display status immediately.
-     */
+
     init {
         getImgurImageProperties()
     }
 
-    /**
-     * Sets the value of the response LiveData to the Mars API status or the successful number of
-     * Mars properties retrieved.
-     */
+
     private fun getImgurImageProperties() {
-        ImgurApi.retrofitService.getProperties().enqueue(object : Callback<String> {
-            override fun onFailure(call: Call<String>, t: Throwable) {
+        ImgurApi.retrofitService.getProperties().enqueue(object : Callback<List<ImgurModel>> {
+            override fun onFailure(call: Call<List<ImgurModel>>, t: Throwable) {
                 _response.value = "Failure: " + t.message
 
             }
 
-            override fun onResponse(call: Call<String>, response: Response<String>) {
-                _response.value = response.body()
+            override fun onResponse(call: Call<List<ImgurModel>>, response: Response<List<ImgurModel>>) {
+                _response.value = "Success: ${response.body()?.size} Imgur properties retrieved"
             }
         })
     }
