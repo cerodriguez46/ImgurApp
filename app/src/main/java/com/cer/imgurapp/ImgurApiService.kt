@@ -5,6 +5,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.scalars.ScalarsConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Headers
+import retrofit2.http.Query
 
 private const val BASE_URL = "https://api.imgur.com/3/gallery/search/"
 
@@ -16,7 +17,8 @@ private val retrofit = Retrofit.Builder()
 interface ImgurApiService {
     @Headers("Authorization: Client-ID 137cda6b5008a7c")
     @GET("1?q=vanilla")
-    fun getProperties():
+    fun getProperties(
+    ):
             Call<String>
 }
 
