@@ -23,9 +23,8 @@ private val retrofit = Retrofit.Builder()
 interface ImgurApiService {
     @Headers("Authorization: Client-ID 137cda6b5008a7c")
     @GET("1?q=vanilla")
-    fun getProperties(
-    ):
-            Call<List<ImgurModel>>
+    fun getProperties():
+            Call<ImgurModel>
 }
 
 object ImgurApi {
