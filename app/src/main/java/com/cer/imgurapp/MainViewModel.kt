@@ -11,11 +11,17 @@ import retrofit2.Response
 
 class MainViewModel : ViewModel() {
     // The internal MutableLiveData String that stores the most recent response
-    private val _response = MutableLiveData<String>()
+    private val _status = MutableLiveData<String>()
 
     // The external immutable LiveData for the response String
-    val response: LiveData<String>
-        get() = _response
+    val status: LiveData<String>
+        get() = _status
+
+    //Live data property
+    private val _property = MutableLiveData<ImgurModel>()
+
+    val property: LiveData<ImgurModel>
+        get() = _property
 
 
     init {
