@@ -5,6 +5,10 @@ import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -23,6 +27,12 @@ class MainViewModel : ViewModel() {
     val properties: LiveData<Data>
         get() = _properties
 
+    // Create a Coroutine scope using a job to be able to cancel when needed
+    private var viewModelJob = Job()
+
+    // the Coroutine runs using the Main (UI) dispatcher
+    private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
+
 
     init {
         getImgurImageProperties()
@@ -30,15 +40,30 @@ class MainViewModel : ViewModel() {
 
 
     private fun getImgurImageProperties() {
-        ImgurApi.retrofitService.getProperties().enqueue(object : Callback<List<ImgurModel>> {
-            override fun onFailure(call: Call<List<ImgurModel>>, t: Throwable) {
-                _response.value = "Failure: " + t.message
+        coroutineScope.launch {
+            // Get the Deferred object for our Retrofit request
+            var getPropertiesDeferred = ImgurApi.retrofitService.getProperties()
+            try {
+                // Await the completion of our Retrofit request
+                val listResult = getPropertiesDeferred.await()
+                _status.value = "Success: ${listResult} Mars properties retrieved"
 
-            }
+                _properties.value = listResult
 
-            override fun onResponse(call: Call<List<ImgurModel>>, response: Response<List<ImgurModel>>) {
-                _response.value = "Success: ${response.body()?.size} Imgur properties retrieved"
+            } catch (e: Exception) {
+                _status.value = "Failure: ${e.message}"
             }
-        })
+        }
+    }
+
+    /**
+     * When the [ViewModel] is finished, we cancel our coroutine [viewModelJob], which tells the
+     * Retrofit service to stop.
+     */
+    override fun onCleared() {
+        super.onCleared()
+        viewModelJob.cancel()
     }
 }
+
+

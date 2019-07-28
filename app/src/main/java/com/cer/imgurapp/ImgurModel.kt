@@ -1,5 +1,7 @@
 package com.cer.imgurapp
 
+import com.squareup.moshi.Json
+
 //get name, id, picture url, and comments if possible
 
 data class ImgurModel(
@@ -9,95 +11,82 @@ data class ImgurModel(
 )
 
 data class Data(
-    val account_id: Int,
-    val account_url: String,
-    val ad_config: AdConfig,
-    val ad_type: Int,
-    val ad_url: String,
-    val animated: Boolean,
-    val bandwidth: Int,
-    val comment_count: Int,
-    val cover: String,
-    val cover_height: Int,
-    val cover_width: Int,
-    val datetime: Int,
-    val description: String,
-    val downs: Int,
-    val edited: Int,
-    val favorite: Boolean,
-    val favorite_count: Int,
-    val gifv: String,
-    val has_sound: Boolean,
-    val height: Int,
-    val hls: String,
-    val id: String,
-    val images: List<Image>,
-    val images_count: Int,
-    val in_gallery: Boolean,
-    val in_most_viral: Boolean,
-    val include_album_ads: Boolean,
-    val is_ad: Boolean,
-    val is_album: Boolean,
-    val layout: String,
-    val link: String,
-    val looping: Boolean,
-    val mp4: String,
-    val mp4_size: Int,
-    val nsfw: Boolean,
-    val points: Int,
-    val privacy: String,
-    val processing: Processing,
-    val score: Int,
-    val section: String,
-    val size: Int,
-    val tags: List<Any>,
-    val title: String,
-    val topic: String,
-    val topic_id: Int,
-    val type: String,
-    val ups: Int,
-    val views: Int,
-    val vote: Any,
-    val width: Int
+    @Json(name = "id")
+    val id: String?,
+    @Json(name = "title")
+    val title: String?,
+    @Json(name = "description")
+    val description: String?,
+    @Json(name = "datetime")
+    val datetime: Int?,
+    @Json(name = "cover")
+    val cover: String?,
+    @Json(name = "account_url")
+    val accountUrl: String?,
+    @Json(name = "account_id")
+    val accountId: Int?,
+    @Json(name = "privacy")
+    val privacy: String?,
+    @Json(name = "layout")
+    val layout: String?,
+    @Json(name = "views")
+    val views: Int?,
+    @Json(name = "link")
+    val link: String?,
+    @Json(name = "ups")
+    val ups: Int?,
+    @Json(name = "downs")
+    val downs: Int?,
+    @Json(name = "points")
+    val points: Int?,
+    @Json(name = "score")
+    val score: Int?,
+    @Json(name = "is_album")
+    val isAlbum: Boolean?,
+    @Json(name = "vote")
+    val vote: String?,
+    @Json(name = "comment_count")
+    val commentCount: Int?,
+    @Json(name = "images_count")
+    val imagesCount: Int,
+    @Json(name = "images")
+    val images: List<Image>?
 )
 
-data class Processing(
-    val status: String
-)
+/*data class Data(
+    @Json(name = "description")
+    val description: String?,
+    @Json(name = "id")
+    val id: String?,
+    val images: List<Image>?,
+    val images_count: Int?
+)*/
 
 data class Image(
-    val account_id: Any,
-    val account_url: Any,
-    val ad_type: Int,
-    val ad_url: String,
-    val animated: Boolean,
-    val bandwidth: Int,
-    val comment_count: Any,
+    @Json(name = "id")
+    val id: String?,
+    @Json(name = "title")
+    val title: String?,
+    @Json(name = "description")
+    val description: String?,
+    @Json(name = "datetime")
     val datetime: Int,
-    val description: Any,
-    val downs: Any,
-    val edited: String,
-    val favorite: Boolean,
-    val favorite_count: Any,
-    val has_sound: Boolean,
-    val height: Int,
-    val id: String,
-    val in_gallery: Boolean,
-    val in_most_viral: Boolean,
-    val is_ad: Boolean,
-    val link: String,
-    val nsfw: Any,
-    val points: Any,
-    val score: Any,
-    val section: Any,
-    val size: Int,
-    val tags: List<Any>,
-    val title: Any,
-    val type: String,
-    val ups: Any,
-    val views: Int,
-    val vote: Any,
-    val width: Int
+    @Json(name = "type")
+    val type: String?,
+    @Json(name = "animated")
+    val animated: Boolean?,
+    @Json(name = "width")
+    val width: Int?,
+    @Json(name = "height")
+    val height: Int?,
+    @Json(name = "size")
+    val size: Int?,
+    @Json(name = "views")
+    val views: Int?,
+    @Json(name = "bandwidth")
+    val bandwidth: Int?,
+    @Json(name = "link")
+    val link: String?
 )
 
 
