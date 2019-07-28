@@ -18,9 +18,9 @@ class MainViewModel : ViewModel() {
         get() = _status
 
     //Live data property
-    private val _properties = MutableLiveData<Data>()
+    private val _properties = MutableLiveData<Image>()
 
-    val properties: LiveData<Data>
+    val properties: LiveData<Image>
         get() = _properties
 
 

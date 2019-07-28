@@ -27,7 +27,7 @@ interface ImgurApiService {
     @Headers("Authorization: Client-ID 137cda6b5008a7c")
     @GET("1?q=vanilla")
     fun getProperties():
-            Deferred<Data>
+            Deferred<Image>
 }
 
 object ImgurApi {
