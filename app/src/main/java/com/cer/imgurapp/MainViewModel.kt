@@ -18,10 +18,10 @@ class MainViewModel : ViewModel() {
         get() = _status
 
     //Live data property
-    private val _property = MutableLiveData<ImgurModel>()
+    private val _properties = MutableLiveData<Data>()
 
-    val property: LiveData<ImgurModel>
-        get() = _property
+    val properties: LiveData<Data>
+        get() = _properties
 
 
     init {

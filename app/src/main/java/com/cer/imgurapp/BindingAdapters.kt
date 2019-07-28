@@ -10,7 +10,8 @@ import com.bumptech.glide.request.RequestOptions
 /**
  * Uses the Glide library to load an image by URL into an [ImageView]
  */
-@BindingAdapter("link")
+/*
+@BindingAdapter("imageUrl")
 fun bindImage(imgView: ImageView, imgUrl: String?) {
     imgUrl?.let {
         val imgUri = imgUrl.toUri().buildUpon().scheme("https").build()
@@ -23,4 +24,4 @@ fun bindImage(imgView: ImageView, imgUrl: String?) {
             )
             .into(imgView)
     }
-}
+}*/
