@@ -29,7 +29,7 @@ class MainFragment : Fragment() {
     ): View? {
 
 
-        val binding = GridViewItemBinding.inflate(inflater)
+        val binding = FragmentMainBinding.inflate(inflater)
 
         //val binding = GridViewItemBinding.inflate(inflater)
 
@@ -40,7 +40,7 @@ class MainFragment : Fragment() {
 
         // Giving the binding access to the OverviewViewModel
         binding.viewModel = viewModel
-
+binding.photosGrid.adapter = PhotoGridAdapter()
         setHasOptionsMenu(true)
         return binding.root
     }

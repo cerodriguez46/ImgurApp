@@ -5,7 +5,7 @@ import com.squareup.moshi.Json
 //get name, id, picture url, and comments if possible
 
 data class ImgurModel(
-    val `data`: List<Data>,
+    val data: List<Data>,
     val status: Int,
     val success: Boolean
 )

@@ -7,14 +7,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 
-/*
 
+//Binding adapter is specifically for GridRecyclerView
 @BindingAdapter("listData")
-fun bindRecyclerView(recyclerView: RecyclerView, data: List<Data>?) {
+fun bindRecyclerView(recyclerView: RecyclerView, data: List<ImgurModel>?) {
     val adapter = recyclerView.adapter as PhotoGridAdapter
     adapter.submitList(data)
 }
-*/
+
 
 
 /**
