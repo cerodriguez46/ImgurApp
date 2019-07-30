@@ -7,35 +7,33 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.cer.imgurapp.databinding.GridViewItemBinding
 
-class PhotoGridAdapter : ListAdapter<ImgurModel, PhotoGridAdapter.ImgurPropertyViewHolder>(DiffCallback) {
+class PhotoGridAdapter : ListAdapter<Image, PhotoGridAdapter.ImgurPropertyViewHolder>(DiffCallback) {
     class ImgurPropertyViewHolder(private var binding: GridViewItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(imgurProperty: ImgurModel){
+        fun bind(imgurProperty: Image) {
             binding.property = imgurProperty
             binding.executePendingBindings()
         }
 
     }
 
-    companion object DiffCallback : DiffUtil.ItemCallback<ImgurModel>(){
-        override fun areItemsTheSame(oldItem: ImgurModel, newItem: ImgurModel): Boolean {
+    companion object DiffCallback : DiffUtil.ItemCallback<Image>() {
+        override fun areItemsTheSame(oldItem: Image, newItem: Image): Boolean {
             return oldItem === newItem
         }
 
-        override fun areContentsTheSame(oldItem: ImgurModel, newItem: ImgurModel): Boolean {
-            return oldItem.data == newItem.data
+        override fun areContentsTheSame(oldItem: Image, newItem: Image): Boolean {
+            return oldItem.id == newItem.id
         }
 
     }
 
 
-
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoGridAdapter.ImgurPropertyViewHolder {
-        return PhotoGridAdapter.ImgurPropertyViewHolder(GridViewItemBinding.inflate(LayoutInflater.from(parent.context)))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImgurPropertyViewHolder {
+        return ImgurPropertyViewHolder(GridViewItemBinding.inflate(LayoutInflater.from(parent.context)))
     }
 
-    override fun onBindViewHolder(holder: PhotoGridAdapter.ImgurPropertyViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ImgurPropertyViewHolder, position: Int) {
        val imgurProperty = getItem(position)
         holder.bind(imgurProperty)
     }

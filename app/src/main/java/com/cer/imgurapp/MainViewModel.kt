@@ -22,9 +22,9 @@ class MainViewModel : ViewModel() {
         get() = _status
 
     //Live data property
-    private val _properties = MutableLiveData<List<ImgurModel>>()
+    private val _properties = MutableLiveData<List<Image>>()
 
-    val properties: LiveData<List<ImgurModel>>
+    val properties: LiveData<List<Image>>
         get() = _properties
 
     // Create a Coroutine scope using a job to be able to cancel when needed
@@ -46,8 +46,8 @@ class MainViewModel : ViewModel() {
             try {
                 // this will run on a thread managed by Retrofit
                 val listResult = getPropertiesDeferred.await()
-                _status.value = "Success: ${listResult.data.size}"
-                _properties.value = listOf(listResult)
+                //_status.value = "Success: ${listResult.images}"
+                _properties.value = listResult.images
             } catch (e: Exception) {
                 _status.value = "Failure: ${e.message}"
             }
