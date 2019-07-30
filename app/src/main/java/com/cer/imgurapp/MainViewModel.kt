@@ -46,8 +46,8 @@ class MainViewModel : ViewModel() {
             try {
                 // this will run on a thread managed by Retrofit
                 val listResult = getPropertiesDeferred.await()
-                //_status.value = "Success: ${listResult.images}"
-                _properties.value = listResult.images
+                // _status.value = "Success: ${listResult.images}"
+                _properties.value = listResult.data[0].images
             } catch (e: Exception) {
                 _status.value = "Failure: ${e.message}"
             }
