@@ -1,18 +1,23 @@
 package com.cer.imgurapp
 
+import android.os.Parcel
+import android.os.Parcelable
 import com.squareup.moshi.Json
+import kotlinx.android.parcel.Parcelize
+import kotlinx.android.parcel.RawValue
 
 //get name, id, picture url, and comments if possible
-
+@Parcelize
 data class ImgurModel(
     @Json(name = "data")
-    val data: List<Data>,
+    val data: @RawValue List<Data>,
     @Json(name = "status")
     val status: Int,
     @Json(name = "success")
     val success: Boolean
-)
+) : Parcelable
 
+@Parcelize
 data class Data(
     @Json(name = "id")
     val id: String?,
@@ -65,10 +70,10 @@ data class Data(
     @Json(name = "images_count")
     val imagesCount: Int,
     @Json(name = "images")
-    val images: List<Image>?,
+    val images: @RawValue List<Image>?,
     @Json(name = "in_most_viral")
     val inMostViral: Boolean?
-)
+) : Parcelable
 
 /*data class Data(
     @Json(name = "description")
@@ -78,7 +83,7 @@ data class Data(
     val images: List<Image>?,
     val images_count: Int?
 )*/
-
+@Parcelize
 data class Image(
     @Json(name = "id")
     val id: String?,
@@ -126,7 +131,7 @@ data class Image(
     val vote: String,
     @Json(name = "in_gallery")
     val inGallery: Boolean
-)
+) : Parcelable
 
 
 /*
