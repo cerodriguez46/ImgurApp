@@ -14,11 +14,12 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class MainViewModel : ViewModel() {
-    // The internal MutableLiveData String that stores the most recent response
-    private val _status = MutableLiveData<String>()
 
-    // The external immutable LiveData for the response String
-    val status: LiveData<String>
+    enum class ImgurApiStatus { LOADING, ERROR, DONE }
+
+
+    private val _status = MutableLiveData<ImgurApiStatus>()
+    val status: LiveData<ImgurApiStatus>
         get() = _status
 
     //Live data property
@@ -44,14 +45,17 @@ class MainViewModel : ViewModel() {
             // Get the Deferred object for our Retrofit request
             var getPropertiesDeferred = ImgurApi.retrofitService.getProperties()
             try {
-                // this will run on a thread managed by Retrofit
+                _status.value = ImgurApiStatus.LOADING
+
                 val listResult = getPropertiesDeferred.await()
-                // _status.value = "Success: ${listResult.images}"
-                _properties.value = listResult.data[0].images
+                _status.value = ImgurApiStatus.DONE
+                _properties.value = listResult.data[1].images
             } catch (e: Exception) {
-                _status.value = "Failure: ${e.message}"
+                _status.value = ImgurApiStatus.ERROR
+                _properties.value = ArrayList()
             }
         }
+
     }
 
     /**
@@ -62,6 +66,7 @@ class MainViewModel : ViewModel() {
         super.onCleared()
         viewModelJob.cancel()
     }
-}
+    }
+
 
 

@@ -1,5 +1,6 @@
 package com.cer.imgurapp
 
+import android.view.View
 import android.widget.ImageView
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
@@ -35,3 +36,21 @@ fun bindImage(imgView: ImageView, imgUrl: String?) {
             .into(imgView)
     }
 }
+
+@BindingAdapter("imgurApiStatus")
+fun bindStatus(statusImageView: ImageView, status: MainViewModel.ImgurApiStatus?) {
+    when (status) {
+        MainViewModel.ImgurApiStatus.LOADING -> {
+            statusImageView.visibility = View.VISIBLE
+            statusImageView.setImageResource(R.drawable.loading_animation)
+        }
+        MainViewModel.ImgurApiStatus.ERROR -> {
+            statusImageView.visibility = View.VISIBLE
+            statusImageView.setImageResource(R.drawable.ic_connection_error)
+        }
+        MainViewModel.ImgurApiStatus.DONE -> {
+            statusImageView.visibility = View.GONE
+        }
+    }
+}
+
