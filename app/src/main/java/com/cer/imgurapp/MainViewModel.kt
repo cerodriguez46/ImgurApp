@@ -28,6 +28,14 @@ class MainViewModel : ViewModel() {
     val properties: LiveData<List<Image>>
         get() = _properties
 
+    // Internally, we use a MutableLiveData to handle navigation to the selected property
+    private val _navigateToSelectedProperty = MutableLiveData<Image>()
+
+    // The external immutable LiveData for the navigation property
+    val navigateToSelectedProperty: LiveData<Image>
+        get() = _navigateToSelectedProperty
+
+
     // Create a Coroutine scope using a job to be able to cancel when needed
     private var viewModelJob = Job()
 
@@ -49,7 +57,7 @@ class MainViewModel : ViewModel() {
 
                 val listResult = getPropertiesDeferred.await()
                 _status.value = ImgurApiStatus.DONE
-                _properties.value = listResult.data[1].images
+                _properties.value = listResult.data[2].images
             } catch (e: Exception) {
                 _status.value = ImgurApiStatus.ERROR
                 _properties.value = ArrayList()
@@ -66,7 +74,15 @@ class MainViewModel : ViewModel() {
         super.onCleared()
         viewModelJob.cancel()
     }
+
+    fun displayPropertyDetails(imgurProperty: Image) {
+        _navigateToSelectedProperty.value = imgurProperty
     }
+
+    fun displayPropertyDetailsComplete() {
+        _navigateToSelectedProperty.value = null
+    }
+}
 
 
 

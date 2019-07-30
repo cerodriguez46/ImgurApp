@@ -11,6 +11,10 @@
             android:name="com.cer.imgurapp.MainFragment"
             android:label="fragment_overview"
             tools:layout="@layout/fragment_main">
+
+        <action
+                android:id="@+id/action_showDetail"
+                app:destination="@id/detailFragment"/>
     </fragment>
 
     <fragment
@@ -18,6 +22,10 @@
             android:name="com.cer.imgurapp.DetailFragment"
             android:label="fragment_detail"
             tools:layout="@layout/fragment_detail">
+        <argument
+                android:name="selectedProperty"
+                app:argType="com.cer.imgurapp.Image"
+        />
     </fragment>
 
 </navigation>

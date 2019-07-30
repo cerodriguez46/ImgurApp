@@ -7,7 +7,8 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.cer.imgurapp.databinding.GridViewItemBinding
 
-class PhotoGridAdapter : ListAdapter<Image, PhotoGridAdapter.ImgurPropertyViewHolder>(DiffCallback) {
+class PhotoGridAdapter(val onClickListener: OnClickListener) :
+    ListAdapter<Image, PhotoGridAdapter.ImgurPropertyViewHolder>(DiffCallback) {
     class ImgurPropertyViewHolder(private var binding: GridViewItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(imgurProperty: Image) {
@@ -35,10 +36,15 @@ class PhotoGridAdapter : ListAdapter<Image, PhotoGridAdapter.ImgurPropertyViewHo
 
     override fun onBindViewHolder(holder: ImgurPropertyViewHolder, position: Int) {
        val imgurProperty = getItem(position)
+        holder.itemView.setOnClickListener {
+            onClickListener.onClick(imgurProperty)
+        }
         holder.bind(imgurProperty)
     }
 
-
+    class OnClickListener(val clickListener: (imgurProperty: Image) -> Unit) {
+        fun onClick(imgurProperty: Image) = clickListener(imgurProperty)
+    }
 }
 
 
