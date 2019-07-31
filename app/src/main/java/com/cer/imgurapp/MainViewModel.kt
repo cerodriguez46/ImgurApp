@@ -1,6 +1,7 @@
 package com.cer.imgurapp
 
 import android.content.Context
+import android.widget.EditText
 import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -51,7 +52,7 @@ class MainViewModel : ViewModel() {
     private fun getImgurImageProperties() {
         coroutineScope.launch {
             // Get the Deferred object for our Retrofit request
-            var getPropertiesDeferred = ImgurApi.retrofitService.getProperties()
+            var getPropertiesDeferred = ImgurApi.retrofitService.getProperties("blue")
             try {
                 _status.value = ImgurApiStatus.LOADING
 
@@ -81,6 +82,12 @@ class MainViewModel : ViewModel() {
 
     fun displayPropertyDetailsComplete() {
         _navigateToSelectedProperty.value = null
+    }
+
+    fun retrieveUserInput(): String {
+        val userInput: String
+        var editTextHello = findViewById(R.id.userInput) as EditText
+        return
     }
 }
 

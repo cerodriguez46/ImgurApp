@@ -25,5 +25,6 @@ class DetailFragment : Fragment() {
         ).get(DetailViewModel::class.java)
         return binding.root
 
+
     }
 }
