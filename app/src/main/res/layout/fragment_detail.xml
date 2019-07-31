@@ -44,7 +44,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/main_photo_image"
                     tools:text="To Rent"
-                    android:text="@{viewModel.selectedProperty.title}"
+                    android:text="@{viewModel.selectedProperty.description}"
             />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
