@@ -105,8 +105,6 @@ data class Image(
     val size: Int?,
     @Json(name = "views")
     val views: Int?,
-    @Json(name = "bandwidth")
-    val bandwidth: Int?,
     @Json(name = "deletehash")
     val deleteHash: String?,
     @Json(name = "name")
