@@ -9,6 +9,11 @@
         <variable
                 name="viewModel"
                 type="com.cer.imgurapp.MainViewModel"/>
+
+        <variable
+                name="userInput"
+                type="com.cer.imgurapp.MainViewModel"></variable>
+
     </data>
 
 
@@ -19,19 +24,21 @@
 
         <ImageView
                 android:id="@+id/search_magnify"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:src="@mipmap/ic_launcher"
                 app:layout_constraintEnd_toEndOf="parent" android:layout_marginTop="8dp"
                 app:layout_constraintTop_toTopOf="parent" android:layout_marginBottom="8dp"
-                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="0.0"/>
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="0.0"
+                android:layout_marginRight="8dp" android:layout_marginEnd="8dp"/>
         <EditText
                 android:id="@+id/searchInput"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:layout_weight="1"
+                android:text="@={userInput.input}"
                 android:hint="Enter a place..."
                 android:inputType="textCapWords|textAutoComplete|textAutoCorrect"
                 android:maxLines="1"
@@ -39,9 +46,12 @@
                 android:imeOptions="actionGo"
                 android:background="?android:attr/selectableItemBackground"
                 android:textColor="@android:color/black"
-                app:layout_constraintEnd_toStartOf="@+id/search_magnify"
                 app:layout_constraintBottom_toBottomOf="@+id/search_magnify" android:layout_marginTop="8dp"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0"
+                app:layout_constraintEnd_toStartOf="@+id/search_magnify" android:layout_marginRight="66dp"
+                android:layout_marginEnd="66dp" app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginLeft="8dp" android:layout_marginStart="8dp"/>
 
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/photos_grid"
@@ -56,7 +66,8 @@
                 app:layout_constraintRight_toRightOf="parent"
                 tools:itemCount="16"
                 tools:listitem="@layout/grid_view_item" android:layout_marginTop="8dp"
-                app:layout_constraintTop_toBottomOf="@+id/searchInput"/>
+                app:layout_constraintTop_toBottomOf="@+id/searchInput" app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintVertical_bias="0.0"/>
 
         <ImageView
                 android:id="@+id/status_image"

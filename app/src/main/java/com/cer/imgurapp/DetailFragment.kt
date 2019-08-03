@@ -23,8 +23,14 @@ class DetailFragment : Fragment() {
         binding.viewModel = ViewModelProviders.of(
             this, viewModelFactory
         ).get(DetailViewModel::class.java)
+
+        (activity as MainActivity).supportActionBar?.setTitle(imgurProperty.title)
+
         return binding.root
 
 
+    }
+
+    fun setImageTitle() {
     }
 }

@@ -8,10 +8,13 @@ import androidx.navigation.ui.NavigationUI
 
 class MainActivity : AppCompatActivity() {
 
+    val actionBarTitle: String? = "My title"
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        // supportActionBar?.setTitle(actionBarTitle)
 
         val navController = this.findNavController(R.id.nav_host_fragment)
         NavigationUI.setupActionBarWithNavController(this, navController)

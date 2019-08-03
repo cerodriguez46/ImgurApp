@@ -13,8 +13,13 @@ import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import androidx.databinding.ObservableField
+
+
 
 class MainViewModel : ViewModel() {
+
+    val input = ObservableField("")
 
     enum class ImgurApiStatus { LOADING, ERROR, DONE }
 
@@ -58,7 +63,8 @@ class MainViewModel : ViewModel() {
 
                 val listResult = getPropertiesDeferred.await()
                 _status.value = ImgurApiStatus.DONE
-                _properties.value = listResult.data[2].images
+                _properties.value = listResult.data[25].images
+                println(listResult.data.size)
             } catch (e: Exception) {
                 _status.value = ImgurApiStatus.ERROR
                 _properties.value = ArrayList()
@@ -84,10 +90,8 @@ class MainViewModel : ViewModel() {
         _navigateToSelectedProperty.value = null
     }
 
-    fun retrieveUserInput(): String {
-        val userInput: String
-        var editTextHello = findViewById(R.id.userInput) as EditText
-        return
+    fun retrieveUserInput() {
+
     }
 }
 

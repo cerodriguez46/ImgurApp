@@ -1,15 +1,18 @@
 package com.cer.imgurapp
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.cer.imgurapp.databinding.FragmentMainBinding
 import com.cer.imgurapp.databinding.GridViewItemBinding
+import kotlinx.android.synthetic.main.fragment_main.*
 
 class MainFragment : Fragment() {
 
@@ -30,10 +33,9 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-
+        //(activity as MainActivity).supportActionBar?.setTitle(viewModel.input.toString())
         val binding = FragmentMainBinding.inflate(inflater)
 
-        //val binding = GridViewItemBinding.inflate(inflater)
 
 
 
@@ -54,9 +56,19 @@ class MainFragment : Fragment() {
             }
         })
 
+        Log.d("errors", viewModel.input.toString())
+
+        binding.searchMagnify.setOnClickListener { }
+
         setHasOptionsMenu(true)
         return binding.root
     }
+
+    /* fun retrieveUserInput(): String {
+         val userInput: String?
+         searchInput
+         return userInput
+     }*/
 
 
 }
